@@ -1,0 +1,78 @@
+     function timer(h,m,s){
+
+     var sec; 
+     var min; 
+     var hrs; 
+     var day;
+
+     if(((s<=59) && (s>=0)) && ((m<=59) && (m>=0)) && ((h<=23) && (h>=0))){
+
+     sec=s; 
+     min=m; 
+     hrs=h;
+
+     //set parent element id 'lga' to your id 
+
+     var parent = document.getElementById('lga'); 
+     parent.innerHTML = '';
+     var child = document.createElement('div'); 
+     child.id = "thanesh";
+     child.style = 'font-size:20px'; 
+     parent.appendChild(child);
+
+     setInterval(function(){ 
+
+     sec++;
+
+     if(sec==60){sec=0;min++;}
+    if(min==60){min=0;hrs++;}
+    if(hrs==24){hrs = 0; min = 0; sec = 0;}
+
+    if(hrs<=12){
+    day = 'AM';
+    }else{
+    day = 'PM';
+    }
+  
+    document.getElementById('thanesh').innerHTML = '<table style="background-color:#f5f5f5;"><tr><td><div id="hh">0</div><td>'
+					       +hrs+' : <td><div id="mm">0</div><td>'
+					       +min+' : <td><div id="ss">0</div><td>'
+					       +sec+' <td>'
+
+					       +day+'</td></td></td></td></td></td></td></tr></table>';
+    if(sec>9){
+    document.getElementById('ss').style.display = "none";
+    }else if(sec==0){
+    document.getElementById('ss').style.display = "block";
+    }
+
+    if(min>9){
+    document.getElementById('mm').style.display = "none";
+    }else if(min==0){
+    document.getElementById('mm').style.display = "block";
+    }
+
+    if(hrs>9){
+    document.getElementById('hh').style.display = "none";
+    }else if(hrs==0){
+    document.getElementById('hh').style.display = "block";
+    }
+
+    },
+    1000);
+
+    }else{
+    alert("Check time inputs...!");
+    }
+    }
+
+    //Set Hour, Minutes, Seconds by JS / manually
+
+    var date = new Date();
+    
+    var hst = date.getHours();
+    var mst = date.getMinutes();
+    var sst = date.getSeconds();
+    
+    timer(hst,mst,sst);
+    
